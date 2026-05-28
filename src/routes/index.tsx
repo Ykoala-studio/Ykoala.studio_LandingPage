@@ -98,6 +98,7 @@ function Landing() {
         </nav>
       </header>
 
+      <main>
       {/* HERO */}
       <section className="max-w-6xl mx-auto px-5 pt-16 pb-24 md:pt-24 md:pb-32">
         <div className="grid md:grid-cols-2 gap-12 items-center">
