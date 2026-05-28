@@ -428,8 +428,15 @@ function ProjectsCarousel() {
             key={p.title}
             className="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[38%] neo-card overflow-hidden bg-cream"
           >
-            <div className={`h-56 bg-gradient-to-br ${p.color} border-b-2 border-ink flex items-center justify-center text-7xl`}>
-              {p.emoji}
+            <div className="h-56 border-b-2 border-ink overflow-hidden">
+              <img
+                src={p.image}
+                alt={`Projeto ${p.title} — ${p.category}`}
+                loading="lazy"
+                width={800}
+                height={600}
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="p-6">
               <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-eucalyptus-soft border-2 border-ink">
