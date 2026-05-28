@@ -283,9 +283,10 @@ function Landing() {
           </div>
         </div>
       </section>
+      </main>
 
       {/* FOOTER */}
-      <footer className="bg-ink text-cream">
+      <footer className="bg-ink text-cream">,
         <div className="max-w-6xl mx-auto px-5 py-16">
           <div className="grid gap-12 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
             {/* Brand column */}
