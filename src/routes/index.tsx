@@ -176,6 +176,11 @@ function Landing() {
         </div>
       </section>
 
+      {/* PROJETOS / CARROSSEL */}
+      <ProjectsCarousel />
+
+
+
       {/* PROCESSO */}
       <section id="processo" className="bg-eucalyptus-soft border-y-2 border-ink py-24">
         <div className="max-w-6xl mx-auto px-5">
