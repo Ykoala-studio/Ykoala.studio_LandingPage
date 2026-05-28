@@ -290,3 +290,103 @@ function Landing() {
     </div>
   );
 }
+
+function ProjectsCarousel() {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  const scrollToIndex = (i: number) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const card = el.children[i] as HTMLElement | undefined;
+    if (card) el.scrollTo({ left: card.offsetLeft - 20, behavior: "smooth" });
+  };
+
+  const scrollBy = (dir: 1 | -1) => {
+    const next = Math.min(projects.length - 1, Math.max(0, active + dir));
+    setActive(next);
+    scrollToIndex(next);
+  };
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const children = Array.from(el.children) as HTMLElement[];
+      const center = el.scrollLeft + el.clientWidth / 2;
+      let nearest = 0;
+      let best = Infinity;
+      children.forEach((c, i) => {
+        const cCenter = c.offsetLeft + c.clientWidth / 2;
+        const d = Math.abs(cCenter - center);
+        if (d < best) { best = d; nearest = i; }
+      });
+      setActive(nearest);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <section id="projetos" className="max-w-6xl mx-auto px-5 py-24">
+      <div className="flex flex-wrap items-end justify-between gap-6">
+        <div className="max-w-2xl">
+          <span className="text-sm font-semibold text-eucalyptus uppercase tracking-wider">Portfólio</span>
+          <h2 className="mt-3 text-4xl md:text-5xl font-bold">Projetos que já saíram do forno.</h2>
+          <p className="mt-4 text-muted-foreground text-lg">Uma amostra do que a gente já abraçou por aí.</p>
+        </div>
+        <div className="flex gap-3">
+          <button
+            aria-label="Anterior"
+            onClick={() => scrollBy(-1)}
+            className="neo-btn bg-cream text-ink w-12 h-12 flex items-center justify-center text-2xl font-bold"
+          >
+            ←
+          </button>
+          <button
+            aria-label="Próximo"
+            onClick={() => scrollBy(1)}
+            className="neo-btn bg-ink text-cream w-12 h-12 flex items-center justify-center text-2xl font-bold"
+          >
+            →
+          </button>
+        </div>
+      </div>
+
+      <div
+        ref={scrollerRef}
+        className="mt-12 flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 -mx-5 px-5 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {projects.map((p, i) => (
+          <article
+            key={p.title}
+            className="snap-center shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[38%] neo-card overflow-hidden bg-cream"
+          >
+            <div className={`h-56 bg-gradient-to-br ${p.color} border-b-2 border-ink flex items-center justify-center text-7xl`}>
+              {p.emoji}
+            </div>
+            <div className="p-6">
+              <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-eucalyptus-soft border-2 border-ink">
+                {p.category}
+              </span>
+              <h3 className="mt-4 text-2xl font-bold">{p.title}</h3>
+              <p className="mt-2 text-muted-foreground text-sm">{p.desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div className="mt-2 flex justify-center gap-2">
+        {projects.map((_, i) => (
+          <button
+            key={i}
+            aria-label={`Ir para projeto ${i + 1}`}
+            onClick={() => { setActive(i); scrollToIndex(i); }}
+            className={`h-2 rounded-full border-2 border-ink transition-all ${active === i ? "w-8 bg-eucalyptus" : "w-2 bg-cream"}`}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
