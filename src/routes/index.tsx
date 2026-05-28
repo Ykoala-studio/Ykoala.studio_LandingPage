@@ -1,14 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import logo from "@/assets/logo-koala.png";
+import projPadaria from "@/assets/proj-padaria.jpg";
+import projEstetica from "@/assets/proj-estetica.jpg";
+import projMercado from "@/assets/proj-mercado.jpg";
+import projAcademia from "@/assets/proj-academia.jpg";
+import projCafe from "@/assets/proj-cafe.jpg";
+import projPetshop from "@/assets/proj-petshop.jpg";
 
 const projects = [
-  { title: "Padaria Pão Dourado", category: "Site Institucional", desc: "Site responsivo com cardápio digital e integração WhatsApp.", color: "from-amber-200 to-orange-300", emoji: "🥐" },
-  { title: "Studio Bella Estética", category: "Landing Page", desc: "LP de alta conversão com agendamento online integrado.", color: "from-pink-200 to-rose-300", emoji: "💅" },
-  { title: "Mercadinho do Zé", category: "Software Local", desc: "Sistema de caixa, estoque e controle de fiado sob medida.", color: "from-green-200 to-emerald-300", emoji: "🛒" },
-  { title: "Academia Movimento", category: "UI/UX + App", desc: "App de treinos com design moderno e fluxo simples.", color: "from-blue-200 to-indigo-300", emoji: "💪" },
-  { title: "Café Aroma Verde", category: "Identidade + Posts", desc: "Branding completo e pack de 30 posts pro Instagram.", color: "from-lime-200 to-green-300", emoji: "☕" },
-  { title: "Pet Shop Patinhas", category: "Site + E-commerce", desc: "Loja online com agendamento de banho e tosa.", color: "from-purple-200 to-fuchsia-300", emoji: "🐾" },
+  { title: "Padaria Pão Dourado", category: "Site Institucional", desc: "Site responsivo com cardápio digital e integração WhatsApp.", image: projPadaria },
+  { title: "Studio Bella Estética", category: "Landing Page", desc: "LP de alta conversão com agendamento online integrado.", image: projEstetica },
+  { title: "Mercadinho do Zé", category: "Software Local", desc: "Sistema de caixa, estoque e controle de fiado sob medida.", image: projMercado },
+  { title: "Academia Movimento", category: "UI/UX + App", desc: "App de treinos com design moderno e fluxo simples.", image: projAcademia },
+  { title: "Café Aroma Verde", category: "Identidade + Posts", desc: "Branding completo e pack de 30 posts pro Instagram.", image: projCafe },
+  { title: "Pet Shop Patinhas", category: "Site + E-commerce", desc: "Loja online com agendamento de banho e tosa.", image: projPetshop },
 ];
 
 export const Route = createFileRoute("/")({
@@ -92,6 +98,7 @@ function Landing() {
         </nav>
       </header>
 
+      <main>
       {/* HERO */}
       <section className="max-w-6xl mx-auto px-5 pt-16 pb-24 md:pt-24 md:pb-32">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -217,7 +224,7 @@ function Landing() {
                 </span>
               )}
               <h3 className="font-display text-3xl font-bold">{p.name}</h3>
-              <p className={`text-sm ${p.highlight ? "text-cream/70" : "text-muted-foreground"}`}>{p.sub}</p>
+              <p className={`text-sm ${p.highlight ? "text-cream/80" : "text-muted-foreground"}`}>{p.sub}</p>
               <p className="mt-6 font-display text-5xl font-bold">{p.price}</p>
               <ul className="mt-6 space-y-3 text-sm">
                 {p.features.map((f) => (
@@ -259,19 +266,24 @@ function Landing() {
         <div className="neo-card bg-ink text-cream p-10 md:p-16 text-center relative overflow-hidden">
           <img src={logo} alt="" className="absolute -right-10 -bottom-10 w-64 opacity-10 invert" />
           <h2 className="font-display text-4xl md:text-6xl font-bold">Bora dar um abraço no seu projeto?</h2>
-          <p className="mt-4 text-cream/70 max-w-xl mx-auto text-lg">
+          <p className="mt-4 text-cream/80 max-w-xl mx-auto text-lg">
             Conta o que você precisa. A gente responde em até 24h com ideias e um plano claro.
           </p>
           <div className="mt-8 flex flex-wrap gap-4 justify-center">
-            <a href="https://wa.me/5500000000000" className="neo-btn bg-eucalyptus text-cream px-7 py-3.5 font-semibold">
-              💬 WhatsApp
+            <a href="https://wa.me/5500000000000" className="neo-btn bg-eucalyptus text-cream px-7 py-3.5 font-semibold inline-flex items-center gap-2">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5" aria-hidden="true">
+                <path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+              </svg>
+              WhatsApp
             </a>
-            <a href="mailto:ola@koala.studio" className="neo-btn bg-cream text-ink px-7 py-3.5 font-semibold">
-              ✉ ola@koala.studio
+            <a href="mailto:ola@koala.studio" className="neo-btn bg-cream text-ink px-7 py-3.5 font-semibold inline-flex items-center gap-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+              ola@koala.studio
             </a>
           </div>
         </div>
       </section>
+      </main>
 
       {/* FOOTER */}
       <footer className="bg-ink text-cream">
@@ -281,9 +293,9 @@ function Landing() {
             <div className="lg:col-span-1">
               <div className="flex items-center gap-2">
                 <img src={logo} alt="KtiptoY" className="h-9 w-9" />
-                <span className="font-display text-2xl font-bold text-yellow-400">KtiptoY</span>
+                <span className="font-display text-2xl font-bold text-white">KtiptoY</span>
               </div>
-              <p className="mt-5 text-sm text-cream/60 leading-relaxed max-w-xs">
+              <p className="mt-5 text-sm text-cream/80 leading-relaxed max-w-xs">
                 Transformando ideias em experiências digitais que geram resultados reais para seu negócio.
               </p>
               <div className="mt-6 flex gap-3">
@@ -298,7 +310,7 @@ function Landing() {
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
                   )},
                 ].map((s) => (
-                  <a key={s.label} href={s.href} aria-label={s.label} className="w-9 h-9 rounded-full border border-cream/20 flex items-center justify-center text-yellow-400 hover:bg-yellow-400 hover:text-ink hover:border-yellow-400 transition-colors">
+                  <a key={s.label} href={s.href} aria-label={s.label} className="w-9 h-9 rounded-full border border-cream/40 flex items-center justify-center text-white hover:bg-white hover:text-ink hover:border-white transition-colors">
                     {s.icon}
                   </a>
                 ))}
@@ -307,42 +319,42 @@ function Landing() {
 
             {/* Serviços */}
             <div>
-              <h4 className="font-bold text-yellow-400 mb-5">Serviços</h4>
-              <ul className="space-y-3 text-sm text-cream/70">
-                <li><a href="#servicos" className="hover:text-yellow-400 transition">Sites Profissionais</a></li>
-                <li><a href="#servicos" className="hover:text-yellow-400 transition">Landing Pages</a></li>
-                <li><a href="#servicos" className="hover:text-yellow-400 transition">Softwares</a></li>
-                <li><a href="#servicos" className="hover:text-yellow-400 transition">UI/UX Design</a></li>
-                <li><a href="#servicos" className="hover:text-yellow-400 transition">Social Media</a></li>
+              <h4 className="font-bold text-white mb-5">Serviços</h4>
+              <ul className="space-y-3 text-sm text-cream/80">
+                <li><a href="#servicos" className="hover:text-white transition">Sites Profissionais</a></li>
+                <li><a href="#servicos" className="hover:text-white transition">Landing Pages</a></li>
+                <li><a href="#servicos" className="hover:text-white transition">Softwares</a></li>
+                <li><a href="#servicos" className="hover:text-white transition">UI/UX Design</a></li>
+                <li><a href="#servicos" className="hover:text-white transition">Social Media</a></li>
               </ul>
             </div>
 
             {/* Empresa */}
             <div>
-              <h4 className="font-bold text-yellow-400 mb-5">Empresa</h4>
-              <ul className="space-y-3 text-sm text-cream/70">
-                <li><a href="#" className="hover:text-yellow-400 transition">Sobre Nós</a></li>
-                <li><a href="#projetos" className="hover:text-yellow-400 transition">Portfólio</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition">Depoimentos</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition">Blog</a></li>
+              <h4 className="font-bold text-white mb-5">Empresa</h4>
+              <ul className="space-y-3 text-sm text-cream/80">
+                <li><a href="#" className="hover:text-white transition">Sobre Nós</a></li>
+                <li><a href="#projetos" className="hover:text-white transition">Portfólio</a></li>
+                <li><a href="#" className="hover:text-white transition">Depoimentos</a></li>
+                <li><a href="#" className="hover:text-white transition">Blog</a></li>
               </ul>
             </div>
 
             {/* Suporte */}
             <div>
-              <h4 className="font-bold text-yellow-400 mb-5">Suporte</h4>
-              <ul className="space-y-3 text-sm text-cream/70">
-                <li><a href="#contato" className="hover:text-yellow-400 transition">Contato</a></li>
-                <li><a href="#faq" className="hover:text-yellow-400 transition">FAQ</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition">Política de Privacidade</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition">Termos de Uso</a></li>
+              <h4 className="font-bold text-white mb-5">Suporte</h4>
+              <ul className="space-y-3 text-sm text-cream/80">
+                <li><a href="#contato" className="hover:text-white transition">Contato</a></li>
+                <li><a href="#faq" className="hover:text-white transition">FAQ</a></li>
+                <li><a href="#" className="hover:text-white transition">Política de Privacidade</a></li>
+                <li><a href="#" className="hover:text-white transition">Termos de Uso</a></li>
               </ul>
             </div>
           </div>
 
-          <div className="mt-12 pt-6 border-t border-cream/10 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-cream/60">
+          <div className="mt-12 pt-6 border-t border-cream/10 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-cream/80">
             <p>© {new Date().getFullYear()} KtiptoY. Todos os direitos reservados.</p>
-            <p>Feito com <span className="text-yellow-400">♥</span> em São Paulo, Brasil</p>
+            <p>Feito com <span className="text-white">♥</span> em São Paulo, Brasil</p>
           </div>
         </div>
       </footer>
@@ -422,8 +434,15 @@ function ProjectsCarousel() {
             key={p.title}
             className="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[38%] neo-card overflow-hidden bg-cream"
           >
-            <div className={`h-56 bg-gradient-to-br ${p.color} border-b-2 border-ink flex items-center justify-center text-7xl`}>
-              {p.emoji}
+            <div className="h-56 border-b-2 border-ink overflow-hidden">
+              <img
+                src={p.image}
+                alt={`Projeto ${p.title} — ${p.category}`}
+                loading="lazy"
+                width={800}
+                height={600}
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="p-6">
               <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-eucalyptus-soft border-2 border-ink">
