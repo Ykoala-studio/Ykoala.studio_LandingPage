@@ -1,5 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import logo from "@/assets/logo-koala.png";
+
+const projects = [
+  { title: "Padaria Pão Dourado", category: "Site Institucional", desc: "Site responsivo com cardápio digital e integração WhatsApp.", color: "from-amber-200 to-orange-300", emoji: "🥐" },
+  { title: "Studio Bella Estética", category: "Landing Page", desc: "LP de alta conversão com agendamento online integrado.", color: "from-pink-200 to-rose-300", emoji: "💅" },
+  { title: "Mercadinho do Zé", category: "Software Local", desc: "Sistema de caixa, estoque e controle de fiado sob medida.", color: "from-green-200 to-emerald-300", emoji: "🛒" },
+  { title: "Academia Movimento", category: "UI/UX + App", desc: "App de treinos com design moderno e fluxo simples.", color: "from-blue-200 to-indigo-300", emoji: "💪" },
+  { title: "Café Aroma Verde", category: "Identidade + Posts", desc: "Branding completo e pack de 30 posts pro Instagram.", color: "from-lime-200 to-green-300", emoji: "☕" },
+  { title: "Pet Shop Patinhas", category: "Site + E-commerce", desc: "Loja online com agendamento de banho e tosa.", color: "from-purple-200 to-fuchsia-300", emoji: "🐾" },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
