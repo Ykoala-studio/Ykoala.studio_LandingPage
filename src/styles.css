@@ -49,7 +49,7 @@
 
   --cream: oklch(0.985 0.012 95);
   --ink: oklch(0.15 0.01 150);
-  --eucalyptus: oklch(0.62 0.09 160);
+  --eucalyptus: oklch(0.52 0.1 160);
   --eucalyptus-soft: oklch(0.88 0.05 160);
 
   --background: var(--cream);
