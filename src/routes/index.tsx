@@ -274,16 +274,75 @@ function Landing() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t-2 border-ink bg-cream">
-        <div className="max-w-6xl mx-auto px-5 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <img src={logo} alt="" className="h-8 w-8" />
-            <span className="font-display font-bold">koala.studio</span>
+      <footer className="bg-ink text-cream">
+        <div className="max-w-6xl mx-auto px-5 py-16">
+          <div className="grid gap-12 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {/* Brand column */}
+            <div className="lg:col-span-1">
+              <div className="flex items-center gap-2">
+                <img src={logo} alt="KtiptoY" className="h-9 w-9" />
+                <span className="font-display text-2xl font-bold text-yellow-400">KtiptoY</span>
+              </div>
+              <p className="mt-5 text-sm text-cream/60 leading-relaxed max-w-xs">
+                Transformando ideias em experiências digitais que geram resultados reais para seu negócio.
+              </p>
+              <div className="mt-6 flex gap-3">
+                {[
+                  { label: "Instagram", href: "#", icon: (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+                  )},
+                  { label: "LinkedIn", href: "#", icon: (
+                    <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5.001A2.5 2.5 0 014.98 3.5zM3 9h4v12H3V9zm7 0h3.8v1.7h.06c.53-1 1.84-2.05 3.78-2.05 4.05 0 4.8 2.66 4.8 6.13V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.85V21h-4V9z"/></svg>
+                  )},
+                  { label: "Email", href: "mailto:ola@ktiptoy.com", icon: (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                  )},
+                ].map((s) => (
+                  <a key={s.label} href={s.href} aria-label={s.label} className="w-9 h-9 rounded-full border border-cream/20 flex items-center justify-center text-yellow-400 hover:bg-yellow-400 hover:text-ink hover:border-yellow-400 transition-colors">
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Serviços */}
+            <div>
+              <h4 className="font-bold text-yellow-400 mb-5">Serviços</h4>
+              <ul className="space-y-3 text-sm text-cream/70">
+                <li><a href="#servicos" className="hover:text-yellow-400 transition">Sites Profissionais</a></li>
+                <li><a href="#servicos" className="hover:text-yellow-400 transition">Landing Pages</a></li>
+                <li><a href="#servicos" className="hover:text-yellow-400 transition">Softwares</a></li>
+                <li><a href="#servicos" className="hover:text-yellow-400 transition">UI/UX Design</a></li>
+                <li><a href="#servicos" className="hover:text-yellow-400 transition">Social Media</a></li>
+              </ul>
+            </div>
+
+            {/* Empresa */}
+            <div>
+              <h4 className="font-bold text-yellow-400 mb-5">Empresa</h4>
+              <ul className="space-y-3 text-sm text-cream/70">
+                <li><a href="#" className="hover:text-yellow-400 transition">Sobre Nós</a></li>
+                <li><a href="#projetos" className="hover:text-yellow-400 transition">Portfólio</a></li>
+                <li><a href="#" className="hover:text-yellow-400 transition">Depoimentos</a></li>
+                <li><a href="#" className="hover:text-yellow-400 transition">Blog</a></li>
+              </ul>
+            </div>
+
+            {/* Suporte */}
+            <div>
+              <h4 className="font-bold text-yellow-400 mb-5">Suporte</h4>
+              <ul className="space-y-3 text-sm text-cream/70">
+                <li><a href="#contato" className="hover:text-yellow-400 transition">Contato</a></li>
+                <li><a href="#faq" className="hover:text-yellow-400 transition">FAQ</a></li>
+                <li><a href="#" className="hover:text-yellow-400 transition">Política de Privacidade</a></li>
+                <li><a href="#" className="hover:text-yellow-400 transition">Termos de Uso</a></li>
+              </ul>
+            </div>
           </div>
-          <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Koala Studio · Feito com 💚 e muito eucalipto.</p>
-          <div className="flex gap-4 text-sm font-medium">
-            <a href="#" className="hover:text-eucalyptus">Instagram</a>
-            <a href="#" className="hover:text-eucalyptus">Behance</a>
+
+          <div className="mt-12 pt-6 border-t border-cream/10 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-cream/60">
+            <p>© {new Date().getFullYear()} KtiptoY. Todos os direitos reservados.</p>
+            <p>Feito com <span className="text-yellow-400">♥</span> em São Paulo, Brasil</p>
           </div>
         </div>
       </footer>
