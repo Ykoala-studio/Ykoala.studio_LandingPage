@@ -355,12 +355,13 @@ function ProjectsCarousel() {
 
       <div
         ref={scrollerRef}
-        className="mt-12 flex gap-6 overflow-x-auto snap-x snap-mandatory pb-6 -mx-5 px-5 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        style={{ scrollPaddingLeft: "20px", scrollPaddingRight: "20px" }}
+        className="mt-12 flex gap-6 overflow-x-auto overflow-y-visible snap-x snap-mandatory pt-3 pb-10 -mx-5 px-5 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {projects.map((p, i) => (
+        {projects.map((p) => (
           <article
             key={p.title}
-            className="snap-center shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[38%] neo-card overflow-hidden bg-cream"
+            className="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[38%] neo-card overflow-hidden bg-cream"
           >
             <div className={`h-56 bg-gradient-to-br ${p.color} border-b-2 border-ink flex items-center justify-center text-7xl`}>
               {p.emoji}
@@ -375,6 +376,7 @@ function ProjectsCarousel() {
           </article>
         ))}
       </div>
+
 
       <div className="mt-2 flex justify-center gap-2">
         {projects.map((_, i) => (
