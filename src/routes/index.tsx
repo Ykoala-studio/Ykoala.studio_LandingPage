@@ -1,14 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import logo from "@/assets/logo-koala.png";
+import projPadaria from "@/assets/proj-padaria.jpg";
+import projEstetica from "@/assets/proj-estetica.jpg";
+import projMercado from "@/assets/proj-mercado.jpg";
+import projAcademia from "@/assets/proj-academia.jpg";
+import projCafe from "@/assets/proj-cafe.jpg";
+import projPetshop from "@/assets/proj-petshop.jpg";
 
 const projects = [
-  { title: "Padaria Pão Dourado", category: "Site Institucional", desc: "Site responsivo com cardápio digital e integração WhatsApp.", color: "from-amber-200 to-orange-300", emoji: "🥐" },
-  { title: "Studio Bella Estética", category: "Landing Page", desc: "LP de alta conversão com agendamento online integrado.", color: "from-pink-200 to-rose-300", emoji: "💅" },
-  { title: "Mercadinho do Zé", category: "Software Local", desc: "Sistema de caixa, estoque e controle de fiado sob medida.", color: "from-green-200 to-emerald-300", emoji: "🛒" },
-  { title: "Academia Movimento", category: "UI/UX + App", desc: "App de treinos com design moderno e fluxo simples.", color: "from-blue-200 to-indigo-300", emoji: "💪" },
-  { title: "Café Aroma Verde", category: "Identidade + Posts", desc: "Branding completo e pack de 30 posts pro Instagram.", color: "from-lime-200 to-green-300", emoji: "☕" },
-  { title: "Pet Shop Patinhas", category: "Site + E-commerce", desc: "Loja online com agendamento de banho e tosa.", color: "from-purple-200 to-fuchsia-300", emoji: "🐾" },
+  { title: "Padaria Pão Dourado", category: "Site Institucional", desc: "Site responsivo com cardápio digital e integração WhatsApp.", image: projPadaria },
+  { title: "Studio Bella Estética", category: "Landing Page", desc: "LP de alta conversão com agendamento online integrado.", image: projEstetica },
+  { title: "Mercadinho do Zé", category: "Software Local", desc: "Sistema de caixa, estoque e controle de fiado sob medida.", image: projMercado },
+  { title: "Academia Movimento", category: "UI/UX + App", desc: "App de treinos com design moderno e fluxo simples.", image: projAcademia },
+  { title: "Café Aroma Verde", category: "Identidade + Posts", desc: "Branding completo e pack de 30 posts pro Instagram.", image: projCafe },
+  { title: "Pet Shop Patinhas", category: "Site + E-commerce", desc: "Loja online com agendamento de banho e tosa.", image: projPetshop },
 ];
 
 export const Route = createFileRoute("/")({
