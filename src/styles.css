@@ -108,12 +108,12 @@
 
 @layer utilities {
   .neo-card {
-    background: var(--card);
     border: 2px solid var(--ink);
     border-radius: var(--radius-2xl);
     box-shadow: var(--shadow-card);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
+  :where(.neo-card) { background: var(--card); }
   .neo-card:hover {
     transform: translate(-3px, -4px);
     box-shadow: var(--shadow-card-hover);
