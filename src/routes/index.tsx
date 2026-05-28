@@ -291,7 +291,7 @@ function Landing() {
             <div className="lg:col-span-1">
               <div className="flex items-center gap-2">
                 <img src={logo} alt="KtiptoY" className="h-9 w-9" />
-                <span className="font-display text-2xl font-bold text-yellow-400">KtiptoY</span>
+                <span className="font-display text-2xl font-bold text-white">KtiptoY</span>
               </div>
               <p className="mt-5 text-sm text-cream/60 leading-relaxed max-w-xs">
                 Transformando ideias em experiências digitais que geram resultados reais para seu negócio.
@@ -308,7 +308,7 @@ function Landing() {
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
                   )},
                 ].map((s) => (
-                  <a key={s.label} href={s.href} aria-label={s.label} className="w-9 h-9 rounded-full border border-cream/20 flex items-center justify-center text-yellow-400 hover:bg-yellow-400 hover:text-ink hover:border-yellow-400 transition-colors">
+                  <a key={s.label} href={s.href} aria-label={s.label} className="w-9 h-9 rounded-full border border-cream/20 flex items-center justify-center text-white hover:bg-white hover:text-ink hover:border-white transition-colors">
                     {s.icon}
                   </a>
                 ))}
@@ -317,42 +317,42 @@ function Landing() {
 
             {/* Serviços */}
             <div>
-              <h4 className="font-bold text-yellow-400 mb-5">Serviços</h4>
+              <h4 className="font-bold text-white mb-5">Serviços</h4>
               <ul className="space-y-3 text-sm text-cream/70">
-                <li><a href="#servicos" className="hover:text-yellow-400 transition">Sites Profissionais</a></li>
-                <li><a href="#servicos" className="hover:text-yellow-400 transition">Landing Pages</a></li>
-                <li><a href="#servicos" className="hover:text-yellow-400 transition">Softwares</a></li>
-                <li><a href="#servicos" className="hover:text-yellow-400 transition">UI/UX Design</a></li>
-                <li><a href="#servicos" className="hover:text-yellow-400 transition">Social Media</a></li>
+                <li><a href="#servicos" className="hover:text-white transition">Sites Profissionais</a></li>
+                <li><a href="#servicos" className="hover:text-white transition">Landing Pages</a></li>
+                <li><a href="#servicos" className="hover:text-white transition">Softwares</a></li>
+                <li><a href="#servicos" className="hover:text-white transition">UI/UX Design</a></li>
+                <li><a href="#servicos" className="hover:text-white transition">Social Media</a></li>
               </ul>
             </div>
 
             {/* Empresa */}
             <div>
-              <h4 className="font-bold text-yellow-400 mb-5">Empresa</h4>
+              <h4 className="font-bold text-white mb-5">Empresa</h4>
               <ul className="space-y-3 text-sm text-cream/70">
-                <li><a href="#" className="hover:text-yellow-400 transition">Sobre Nós</a></li>
-                <li><a href="#projetos" className="hover:text-yellow-400 transition">Portfólio</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition">Depoimentos</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition">Blog</a></li>
+                <li><a href="#" className="hover:text-white transition">Sobre Nós</a></li>
+                <li><a href="#projetos" className="hover:text-white transition">Portfólio</a></li>
+                <li><a href="#" className="hover:text-white transition">Depoimentos</a></li>
+                <li><a href="#" className="hover:text-white transition">Blog</a></li>
               </ul>
             </div>
 
             {/* Suporte */}
             <div>
-              <h4 className="font-bold text-yellow-400 mb-5">Suporte</h4>
+              <h4 className="font-bold text-white mb-5">Suporte</h4>
               <ul className="space-y-3 text-sm text-cream/70">
-                <li><a href="#contato" className="hover:text-yellow-400 transition">Contato</a></li>
-                <li><a href="#faq" className="hover:text-yellow-400 transition">FAQ</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition">Política de Privacidade</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition">Termos de Uso</a></li>
+                <li><a href="#contato" className="hover:text-white transition">Contato</a></li>
+                <li><a href="#faq" className="hover:text-white transition">FAQ</a></li>
+                <li><a href="#" className="hover:text-white transition">Política de Privacidade</a></li>
+                <li><a href="#" className="hover:text-white transition">Termos de Uso</a></li>
               </ul>
             </div>
           </div>
 
           <div className="mt-12 pt-6 border-t border-cream/10 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-cream/60">
             <p>© {new Date().getFullYear()} KtiptoY. Todos os direitos reservados.</p>
-            <p>Feito com <span className="text-yellow-400">♥</span> em São Paulo, Brasil</p>
+            <p>Feito com <span className="text-white">♥</span> em São Paulo, Brasil</p>
           </div>
         </div>
       </footer>
