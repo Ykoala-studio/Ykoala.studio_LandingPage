@@ -4,14 +4,14 @@ import useEmblaCarousel from "embla-carousel-react";
 import logo from "@/assets/LogoSemBackGroundWEBP.webp";
 import logoYbranco from "@/assets/LogoYbrancoWEBP.webp";
 import projEstetica from "@/assets/ImgElectromWEBP.webp";
-import projMercado from "@/assets/proj-mercado.jpg";
+import projPsicanaliseMaraLucia from "@/assets/IMGPsicanaliseWEBP800x388.webp";
 import projCafe from "@/assets/proj-cafe.jpg";
 import projPetshop from "@/assets/proj-petshop.jpg";
 
 const projects = [
  
   { title: "Software de Gerenciamento de Estoque", category: "Software", desc: "Software com Gerenciamento de estoque e recibo e histórico de vendas.", image: projEstetica },
-  { title: "Mercadinho do Zé", category: "Software Local", desc: "Sistema de caixa, estoque e controle de fiado sob medida.", image: projMercado },
+  { title: "Mara Lúcia Psicanálise", category: "Landing Page", desc: "Página acolhedora e estratégica para atrair novos pacientes e transmitir confiança no primeiro contato.", image: projPsicanaliseMaraLucia },
 
   { title: "Café Aroma Verde", category: "Identidade + Posts", desc: "Branding completo e pack de 30 posts pro Instagram.", image: projCafe },
   { title: "Pet Shop Patinhas", category: "Site + E-commerce", desc: "Loja online com agendamento de banho e tosa.", image: projPetshop },
@@ -159,8 +159,8 @@ function Landing() {
         </div>
 
         <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((s) => (
-            <article className="neo-card p-7">
+         {services.map((s) => (
+          <article key={s.title} className="neo-card p-7">
               <div className="flex items-start justify-between">
                 <span className="text-4xl"></span>
                 <span className="text-xs font-mono text-muted-foreground"></span>
