@@ -1,15 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
-import logo from "@/assets/LogoSemBackGround.png";
-import logoYbranco from "@/assets/LogoYbranco.png";
-import projEstetica from "@/assets/proj-estetica.jpg";
+import { useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import logo from "@/assets/LogoSemBackGroundWEBP.webp";
+import logoYbranco from "@/assets/LogoYbrancoWEBP.webp";
+import projEstetica from "@/assets/ImgElectromWEBP.webp";
 import projMercado from "@/assets/proj-mercado.jpg";
 import projCafe from "@/assets/proj-cafe.jpg";
 import projPetshop from "@/assets/proj-petshop.jpg";
 
 const projects = [
  
-  { title: "Studio Bella Estética", category: "Landing Page", desc: "LP de alta conversão com agendamento online integrado.", image: projEstetica },
+  { title: "Software de Gerenciamento de Estoque", category: "Software", desc: "Software com Gerenciamento de estoque e recibo e histórico de vendas.", image: projEstetica },
   { title: "Mercadinho do Zé", category: "Software Local", desc: "Sistema de caixa, estoque e controle de fiado sob medida.", image: projMercado },
 
   { title: "Café Aroma Verde", category: "Identidade + Posts", desc: "Branding completo e pack de 30 posts pro Instagram.", image: projCafe },
@@ -47,30 +48,30 @@ const steps = [
 const plans = [
   {
     name: "Mudinha",
-    price: "R$ 5-10",
-    sub: "pra quem tá começando",
-    features: ["Landing page de 1 seção", "Design responsivo", "Formulário de contato", "1 rodada de ajustes"],
+    price: "R$ 900-1500",
+    sub: "Pra quem tá começando",
+    features: ["Landing page", "Design responsivo", "Formulário de contato", "1 rodada de ajustes"],
     highlight: false,
   },
   {
     name: "Eucalipto",
-    price: "R$ 50-90",
-    sub: "o queridinho da galera",
-    features: ["Site completo até 5 páginas", "UI/UX personalizado", "Integração com WhatsApp", "SEO básico + Analytics", "3 rodadas de ajustes", "30 dias de suporte"],
+    price: "R$ 2000-5000",
+    sub: "O queridinho da galera",
+    features: ["E-commerce-WhatsApp ou Software", "UI/UX personalizado", "Integração com WhatsApp", "SEO + Analytics","5 dias de suporte"],
     highlight: true,
   },
   {
     name: "Floresta",
     price: "Sob consulta",
-    sub: "software + presença completa",
-    features: ["Software local sob medida", "Site institucional", "Identidade visual", "Pack de 12 posts Instagram", "Suporte estendido"],
+    sub: "Software + Landing Page",
+    features: ["Software local + Landing Page","Integração com WhatsApp","SEO + Analytics","Tráfego pago", "Identidade visual", "10 dias de suporte"],
     highlight: false,
   },
 ];
 
 const faqs = [
   { q: "Quanto tempo leva pra ficar pronto?", a: "Landing pages saem em 5–10 dias. Sites completos entre 2 e 4 semanas. Softwares variam conforme o escopo — combinamos tudo na proposta." },
-  { q: "Eu consigo mexer no site depois?", a: "Sim! Entregamos com painel simples e te mostramos como editar textos, imagens e seções. Sem letrinha miúda." },
+  { q: "Posso pedir mudanças depois?", a: "Sim! Sempre que precisar atualizar textos, imagens ou seções, fazemos as alterações pra você." },
   { q: "Vocês fazem só projetos grandes?", a: "Não. A gente atende desde o autônomo até comércios locais e startups. Tem plano pra cada tamanho de sonho." },
   { q: "E se eu não souber o que quero?", a: "Tranquilo. Na conversa inicial te ajudamos a desenhar a ideia. Trazemos referências e direções pra você escolher." },
 ];
@@ -155,7 +156,6 @@ function Landing() {
         <div className="max-w-2xl">
           <span className="text-sm font-semibold text-eucalyptus uppercase tracking-wider">O que entregamos</span>
           <h2 className="mt-3 text-4xl md:text-5xl font-bold">Tudo que sua marca precisa pra brilhar.</h2>
-          <p className="mt-4 text-muted-foreground text-lg">Seis serviços, uma estética só: bonita, funcional e fácil de manter.</p>
         </div>
 
         <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -349,60 +349,49 @@ function Landing() {
 }
 
 function ProjectsCarousel() {
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    loop: false,
+    dragFree: true,
+  });
 
-  const scrollToIndex = (i: number) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const card = el.children[i] as HTMLElement | undefined;
-    if (card) el.scrollTo({ left: card.offsetLeft - 20, behavior: "smooth" });
-  };
+  const scrollPrev = useCallback(() => {
+    emblaApi?.scrollPrev();
+  }, [emblaApi]);
 
-  const scrollBy = (dir: 1 | -1) => {
-    const next = Math.min(projects.length - 1, Math.max(0, active + dir));
-    setActive(next);
-    scrollToIndex(next);
-  };
-
-  useEffect(() => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const onScroll = () => {
-      const children = Array.from(el.children) as HTMLElement[];
-      const center = el.scrollLeft + el.clientWidth / 2;
-      let nearest = 0;
-      let best = Infinity;
-      children.forEach((c, i) => {
-        const cCenter = c.offsetLeft + c.clientWidth / 2;
-        const d = Math.abs(cCenter - center);
-        if (d < best) { best = d; nearest = i; }
-      });
-      setActive(nearest);
-    };
-    el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
-  }, []);
+  const scrollNext = useCallback(() => {
+    emblaApi?.scrollNext();
+  }, [emblaApi]);
 
   return (
-    <section id="projetos" className="max-w-6xl mx-auto px-5 py-24">
+    <section id="projetos" className="max-w-6xl mx-auto px-5 py-24 overflow-hidden">
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-2xl">
-          <span className="text-sm font-semibold text-eucalyptus uppercase tracking-wider">Portfólio</span>
-          <h2 className="mt-3 text-4xl md:text-5xl font-bold">Projetos que já saíram do forno.</h2>
-          <p className="mt-4 text-muted-foreground text-lg">Uma amostra do que a gente já abraçou por aí.</p>
+          <span className="text-sm font-semibold text-eucalyptus uppercase tracking-wider">
+            Portfólio
+          </span>
+
+          <h2 className="mt-3 text-4xl md:text-5xl font-bold">
+            Projetos que já saíram do forno.
+          </h2>
+
+          <p className="mt-4 text-muted-foreground text-lg">
+            Uma amostra do que a gente já abraçou por aí.
+          </p>
         </div>
+
         <div className="flex gap-3">
           <button
             aria-label="Anterior"
-            onClick={() => scrollBy(-1)}
+            onClick={scrollPrev}
             className="neo-btn bg-cream text-ink w-12 h-12 flex items-center justify-center text-2xl font-bold"
           >
             ←
           </button>
+
           <button
             aria-label="Próximo"
-            onClick={() => scrollBy(1)}
+            onClick={scrollNext}
             className="neo-btn bg-ink text-cream w-12 h-12 flex items-center justify-center text-2xl font-bold"
           >
             →
@@ -410,49 +399,40 @@ function ProjectsCarousel() {
         </div>
       </div>
 
-      <div
-        ref={scrollerRef}
-        style={{ scrollPaddingLeft: "20px", scrollPaddingRight: "20px" }}
-        className="mt-12 flex gap-6 overflow-x-auto overflow-y-visible snap-x snap-mandatory pt-3 pb-10 -mx-5 px-5 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {projects.map((p) => (
-          <article
-            key={p.title}
-            className="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[38%] neo-card overflow-hidden bg-cream"
-          >
-            <div className="h-56 border-b-2 border-ink overflow-hidden">
-              <img
-                src={p.image}
-                alt={`Projeto ${p.title} — ${p.category}`}
-                loading="lazy"
-                width={800}
-                height={600}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="p-6">
-              <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-eucalyptus-soft border-2 border-ink">
-                {p.category}
-              </span>
-              <h3 className="mt-4 text-2xl font-bold">{p.title}</h3>
-              <p className="mt-2 text-muted-foreground text-sm">{p.desc}</p>
-            </div>
-          </article>
-        ))}
-      </div>
+      <div className="overflow-hidden mt-12" ref={emblaRef}>
+        <div className="flex gap-6">
+          {projects.map((p) => (
+            <div
+              key={p.title}
+              className="min-w-[85%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[38%]"
+            >
+              <article className="neo-card overflow-hidden bg-cream h-full">
+                <div className="h-56 border-b-2 border-ink overflow-hidden">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
+                <div className="p-6">
+                  <span className="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-eucalyptus-soft border-2 border-ink">
+                    {p.category}
+                  </span>
 
-      <div className="mt-2 flex justify-center gap-2">
-        {projects.map((_, i) => (
-          <button
-            key={i}
-            aria-label={`Ir para projeto ${i + 1}`}
-            onClick={() => { setActive(i); scrollToIndex(i); }}
-            className={`h-2 rounded-full border-2 border-ink transition-all ${active === i ? "w-8 bg-eucalyptus" : "w-2 bg-cream"}`}
-          />
-        ))}
+                  <h3 className="mt-4 text-2xl font-bold">
+                    {p.title}
+                  </h3>
+
+                  <p className="mt-2 text-muted-foreground text-sm">
+                    {p.desc}
+                  </p>
+                </div>
+              </article>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
 }
-
