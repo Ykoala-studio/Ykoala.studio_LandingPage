@@ -1,18 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import logo from "@/assets/logo-koala.png";
-import projPadaria from "@/assets/proj-padaria.jpg";
+import logo from "@/assets/LogoSemBackGround.png";
+import logoYbranco from "@/assets/LogoYbranco.png";
 import projEstetica from "@/assets/proj-estetica.jpg";
 import projMercado from "@/assets/proj-mercado.jpg";
-import projAcademia from "@/assets/proj-academia.jpg";
 import projCafe from "@/assets/proj-cafe.jpg";
 import projPetshop from "@/assets/proj-petshop.jpg";
 
 const projects = [
-  { title: "Padaria Pão Dourado", category: "Site Institucional", desc: "Site responsivo com cardápio digital e integração WhatsApp.", image: projPadaria },
+ 
   { title: "Studio Bella Estética", category: "Landing Page", desc: "LP de alta conversão com agendamento online integrado.", image: projEstetica },
   { title: "Mercadinho do Zé", category: "Software Local", desc: "Sistema de caixa, estoque e controle de fiado sob medida.", image: projMercado },
-  { title: "Academia Movimento", category: "UI/UX + App", desc: "App de treinos com design moderno e fluxo simples.", image: projAcademia },
+
   { title: "Café Aroma Verde", category: "Identidade + Posts", desc: "Branding completo e pack de 30 posts pro Instagram.", image: projCafe },
   { title: "Pet Shop Patinhas", category: "Site + E-commerce", desc: "Loja online com agendamento de banho e tosa.", image: projPetshop },
 ];
@@ -30,12 +29,12 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { tag: "01", title: "Sites Institucionais", desc: "Sites rápidos, responsivos e otimizados pra Google. Sua marca com cara de gente grande.", icon: "🌐" },
-  { tag: "02", title: "Softwares Locais", desc: "Sistemas sob medida pro seu comércio: caixa, estoque, agendamentos e mais.", icon: "💻" },
-  { tag: "03", title: "Landing Pages", desc: "Páginas de venda que convertem. Copy persuasiva + design que segura o olho.", icon: "🚀" },
-  { tag: "04", title: "UI / UX Design", desc: "Interfaces bonitas e fáceis de usar. Seu produto com experiência de aplicativo top.", icon: "🎨" },
-  { tag: "05", title: "Posts pro Instagram", desc: "Feed coeso, carrosséis que prendem atenção e stories estratégicos.", icon: "📱" },
-  { tag: "06", title: "Identidade Visual", desc: "Logos, paletas e tipografia que fazem sua marca ser inesquecível.", icon: "✨" },
+  {title: "Sites Institucionais", desc: "Sites rápidos, responsivos e otimizados pra Google. Sua marca com cara de gente grande." },
+  {title: "Softwares Locais", desc: "Sistemas sob medida pro seu comércio: caixa, estoque, agendamentos e mais."},
+  {title: "Landing Pages", desc: "Páginas de venda que convertem. Copy persuasiva + design que segura o olho."},
+  {title: "UI / UX Design", desc: "Interfaces bonitas e fáceis de usar. Seu produto com experiência de aplicativo top."},
+  {title: "Posts pro Instagram", desc: "Feed coeso, carrosséis que prendem atenção e stories estratégicos."},
+  {title: "Identidade Visual", desc: "Logos, paletas e tipografia que fazem sua marca ser inesquecível."},
 ];
 
 const steps = [
@@ -48,14 +47,14 @@ const steps = [
 const plans = [
   {
     name: "Mudinha",
-    price: "R$ 890",
+    price: "R$ 5-10",
     sub: "pra quem tá começando",
     features: ["Landing page de 1 seção", "Design responsivo", "Formulário de contato", "1 rodada de ajustes"],
     highlight: false,
   },
   {
     name: "Eucalipto",
-    price: "R$ 2.490",
+    price: "R$ 50-90",
     sub: "o queridinho da galera",
     features: ["Site completo até 5 páginas", "UI/UX personalizado", "Integração com WhatsApp", "SEO básico + Analytics", "3 rodadas de ajustes", "30 dias de suporte"],
     highlight: true,
@@ -90,10 +89,9 @@ function Landing() {
             <a href="#servicos" className="hover:text-eucalyptus transition">Serviços</a>
             <a href="#processo" className="hover:text-eucalyptus transition">Processo</a>
             <a href="#planos" className="hover:text-eucalyptus transition">Planos</a>
-            <a href="#faq" className="hover:text-eucalyptus transition">FAQ</a>
           </div>
           <a href="#contato" className="neo-btn bg-ink text-cream px-5 py-2 text-sm font-semibold">
-            Fala com a gente
+            Fale com a gente
           </a>
         </nav>
       </header>
@@ -103,10 +101,7 @@ function Landing() {
       <section className="max-w-6xl mx-auto px-5 pt-16 pb-24 md:pt-24 md:pb-32">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-eucalyptus-soft border-2 border-ink text-sm font-semibold">
-              <span className="w-2 h-2 rounded-full bg-eucalyptus animate-pulse" />
-              Aceitando novos projetos
-            </span>
+            
             <h1 className="mt-6 text-5xl md:text-7xl font-bold leading-[0.95]">
               Sites e softwares que <span className="italic text-eucalyptus">abraçam</span> seu negócio.
             </h1>
@@ -121,13 +116,7 @@ function Landing() {
                 Ver serviços
               </a>
             </div>
-            <div className="mt-10 flex items-center gap-6 text-sm text-muted-foreground">
-              <div><strong className="text-ink text-2xl font-display">+80</strong><br/>projetos entregues</div>
-              <div className="w-px h-10 bg-ink/20" />
-              <div><strong className="text-ink text-2xl font-display">5★</strong><br/>avaliações reais</div>
-              <div className="w-px h-10 bg-ink/20" />
-              <div><strong className="text-ink text-2xl font-display">7d</strong><br/>prazo médio LP</div>
-            </div>
+            
           </div>
 
           <div className="relative">
@@ -150,7 +139,7 @@ function Landing() {
         <div className="flex gap-12 animate-marquee whitespace-nowrap font-display text-2xl">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex gap-12">
-              <span>🐨 Sites Institucionais</span><span>·</span>
+              <span>Social Media</span><span>·</span>
               <span>Softwares Locais</span><span>·</span>
               <span>Landing Pages</span><span>·</span>
               <span>UI/UX Design</span><span>·</span>
@@ -171,10 +160,10 @@ function Landing() {
 
         <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s) => (
-            <article key={s.tag} className="neo-card p-7">
+            <article className="neo-card p-7">
               <div className="flex items-start justify-between">
-                <span className="text-4xl">{s.icon}</span>
-                <span className="text-xs font-mono text-muted-foreground">{s.tag}</span>
+                <span className="text-4xl"></span>
+                <span className="text-xs font-mono text-muted-foreground"></span>
               </div>
               <h3 className="mt-6 text-2xl font-bold">{s.title}</h3>
               <p className="mt-3 text-muted-foreground">{s.desc}</p>
@@ -292,8 +281,8 @@ function Landing() {
             {/* Brand column */}
             <div className="lg:col-span-1">
               <div className="flex items-center gap-2">
-                <img src={logo} alt="KtiptoY" className="h-9 w-9" />
-                <span className="font-display text-2xl font-bold text-white">KtiptoY</span>
+                <img src={logoYbranco} alt="KtiptoY" className="h-9 w-9" />
+                <span className="font-display text-2xl font-bold text-white">koala.studio</span>
               </div>
               <p className="mt-5 text-sm text-cream/80 leading-relaxed max-w-xs">
                 Transformando ideias em experiências digitais que geram resultados reais para seu negócio.
@@ -335,8 +324,6 @@ function Landing() {
               <ul className="space-y-3 text-sm text-cream/80">
                 <li><a href="#" className="hover:text-white transition">Sobre Nós</a></li>
                 <li><a href="#projetos" className="hover:text-white transition">Portfólio</a></li>
-                <li><a href="#" className="hover:text-white transition">Depoimentos</a></li>
-                <li><a href="#" className="hover:text-white transition">Blog</a></li>
               </ul>
             </div>
 
@@ -345,7 +332,6 @@ function Landing() {
               <h4 className="font-bold text-white mb-5">Suporte</h4>
               <ul className="space-y-3 text-sm text-cream/80">
                 <li><a href="#contato" className="hover:text-white transition">Contato</a></li>
-                <li><a href="#faq" className="hover:text-white transition">FAQ</a></li>
                 <li><a href="#" className="hover:text-white transition">Política de Privacidade</a></li>
                 <li><a href="#" className="hover:text-white transition">Termos de Uso</a></li>
               </ul>
@@ -353,8 +339,8 @@ function Landing() {
           </div>
 
           <div className="mt-12 pt-6 border-t border-cream/10 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-cream/80">
-            <p>© {new Date().getFullYear()} KtiptoY. Todos os direitos reservados.</p>
-            <p>Feito com <span className="text-white">♥</span> em São Paulo, Brasil</p>
+            <p>© {new Date().getFullYear()} Ykoala.studio. Todos os direitos reservados.</p>
+            <p>Feito<span className="text-white"></span> em São Carlos, São Paulo, Brasil</p>
           </div>
         </div>
       </footer>
