@@ -287,3 +287,89 @@
     scroll-behavior: auto !important;
   }
 }
+/* =====================
+   ACESSIBILIDADE EXTRA
+   ===================== */
+
+/* Skip-to-content link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: top 0.2s;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Focus-visible: anel de foco visível para teclado */
+:focus-visible {
+  outline: 3px solid var(--eucalyptus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Remove outline para cliques com mouse */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* =====================
+   FONT CLS MITIGATION
+   Ajusta métricas dos fallbacks para minimizar layout shift
+   quando as Google Fonts carregam de forma não-bloqueante.
+   ===================== */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Georgia");
+  size-adjust: 105%;
+  ascent-override: 90%;
+  descent-override: 20%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: local("system-ui");
+  size-adjust: 100%;
+  ascent-override: 92%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
+/* =====================
+   HERO VISUAL — reserva espaço para evitar CLS do absolute rotacionado
+   ===================== */
+.hero-visual {
+  min-height: 320px;
+}
+@media (min-width: 768px) {
+  .hero-visual {
+    min-height: 420px;
+  }
+}
+
+/* =====================
+   FLOAT — reescrita com apenas transform (GPU-only, sem reflow)
+   Substitui a versão anterior no arquivo (que usava translate3d + rotate)
+   A versão anterior causava "non-composited animation" no Lighthouse Desktop.
+   ===================== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50%       { transform: translateY(-10px) rotate(2deg); }
+}
