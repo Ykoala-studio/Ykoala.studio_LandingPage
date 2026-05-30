@@ -1,9 +1,11 @@
-@import "tailwindcss" source(none);
-@source "../src";
+@import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@source "../src";
 
+/* =========================
+   THEME (TAILWIND V4)
+========================= */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -26,8 +28,6 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -40,11 +40,13 @@
   --font-display: "Fraunces", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
 
-  --shadow-soft: 0 10px 40px -10px oklch(0.2 0.02 150 / 0.15);
   --shadow-card: 0 2px 0 0 var(--ink), 6px 8px 0 0 var(--ink);
   --shadow-card-hover: 0 2px 0 0 var(--ink), 10px 14px 0 0 var(--ink);
 }
 
+/* =========================
+   ROOT
+========================= */
 :root {
   --radius: 1rem;
 
@@ -55,116 +57,52 @@
 
   --background: var(--cream);
   --foreground: var(--ink);
-
-  --card: oklch(1 0 0);
+  --card: white;
   --card-foreground: var(--ink);
 
-  --popover: oklch(1 0 0);
-  --popover-foreground: var(--ink);
-
   --primary: var(--ink);
-  --primary-foreground: var(--cream);
-
   --secondary: var(--eucalyptus-soft);
-  --secondary-foreground: var(--ink);
-
   --muted: oklch(0.95 0.012 95);
-
-  /* contraste melhor */
   --muted-foreground: oklch(0.38 0.015 150);
 
   --accent: var(--eucalyptus);
-  --accent-foreground: var(--cream);
-
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0 0);
-
   --border: oklch(0.15 0.01 150 / 0.12);
   --input: oklch(0.15 0.01 150 / 0.15);
-
   --ring: var(--eucalyptus);
 }
 
-.dark {
-  --background: oklch(0.15 0.01 150);
-  --foreground: var(--cream);
-
-  --card: oklch(0.2 0.01 150);
-  --card-foreground: var(--cream);
-
-  --primary: var(--cream);
-  --primary-foreground: var(--ink);
-
-  --border: oklch(1 0 0 / 0.12);
-}
-
+/* =========================
+   BASE
+========================= */
 @layer base {
   * {
     border-color: var(--color-border);
     box-sizing: border-box;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background: var(--background);
+    color: var(--foreground);
     font-family: var(--font-sans);
-
-    background-image:
-      radial-gradient(
-        circle at 10% 0%,
-        oklch(0.88 0.05 160 / 0.28),
-        transparent 40%
-      ),
-      radial-gradient(
-        circle at 90% 100%,
-        oklch(0.88 0.05 160 / 0.18),
-        transparent 40%
-      );
-
-    background-attachment: scroll;
-
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
-  h1,
-  h2,
-  h3,
-  h4 {
+  h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
     line-height: 1;
-  }
-
-  img {
-    display: block;
-    max-width: 100%;
-    height: auto;
   }
 }
 
+/* =========================
+   UTILITIES (SEU DESIGN)
+========================= */
 @layer utilities {
+
   .neo-card {
     border: 2px solid var(--ink);
-    border-radius: var(--radius-2xl);
-
+    border-radius: 1.5rem;
     box-shadow: var(--shadow-card);
-
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
-
-    will-change: transform;
-    backface-visibility: hidden;
-  }
-
-  :where(.neo-card) {
-    background: var(--card);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .neo-card:hover {
@@ -175,80 +113,63 @@
   .neo-btn {
     border: 2px solid var(--ink);
     border-radius: 9999px;
-
-    box-shadow: 4px 4px 0 0 var(--ink);
-
-    transition:
-      transform 0.15s ease,
-      box-shadow 0.15s ease;
-
-    will-change: transform;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
 
   .neo-btn:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 0 var(--ink);
   }
 
   .neo-btn:active {
     transform: translate(1px, 1px);
-    box-shadow: 0 0 0 0 var(--ink);
+    box-shadow: none;
   }
 
-  /* grain otimizado */
   .grain::before {
     content: "";
-
     position: fixed;
     inset: 0;
-
     pointer-events: none;
-
-    opacity: 0.025;
-
-    background-image:
-      radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
-
+    opacity: 0.02;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
     background-size: 4px 4px;
+  }
 
-    z-index: 1;
+  /* =========================
+     ANIMAÇÕES (TAILWIND V4 OK)
+  ========================= */
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(2deg);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
   }
 }
 
-/* animação otimizada */
-@keyframes float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(-2deg);
-  }
-
-  50% {
-    transform: translate3d(0, -10px, 0) rotate(2deg);
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-  will-change: transform;
-}
-
-/* marquee otimizado */
-@keyframes marquee {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 40s linear infinite;
-  will-change: transform;
-}
-
-/* MOBILE PERFORMANCE */
+/* =========================
+   MOBILE
+========================= */
 @media (max-width: 768px) {
   .animate-float {
     animation: none;
@@ -262,28 +183,29 @@
   .neo-btn:hover {
     transform: none;
   }
+}
 
-  .grain::before {
-    display: none;
+/* =========================
+   REDUCE MOTION
+========================= */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
   }
-
-  body {
-    background-image:
-      radial-gradient(
-        circle at top left,
-        oklch(0.88 0.05 160 / 0.18),
-        transparent 35%
-      );
+}
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
-/* acessibilidade */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
+.float {
+  animation: float 6s ease-in-out infinite;
 }

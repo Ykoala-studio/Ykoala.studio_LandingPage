@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import logo from "@/assets/LogoSemBackGroundWEBP.webp";
@@ -17,17 +16,6 @@ const projects = [
   { title: "Pet Shop Patinhas", category: "Site + E-commerce", desc: "Loja online com agendamento de banho e tosa.", image: projPetshop },
 ];
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Koala Studio — Sites, Software & Design que abraçam seu negócio" },
-      { name: "description", content: "Criamos sites, softwares locais, landing pages, UI/UX e posts para Instagram. Design bonito, código limpo e entregas rápidas." },
-      { property: "og:title", content: "Koala Studio — Sites, Software & Design" },
-      { property: "og:description", content: "Sites, softwares locais, landing pages, UI/UX e posts para Instagram." },
-    ],
-  }),
-  component: Landing,
-});
 
 const services = [
   {title: "Sites Institucionais", desc: "Sites rápidos, responsivos e otimizados pra Google. Sua marca com cara de gente grande." },
@@ -435,4 +423,6 @@ function ProjectsCarousel() {
       </div>
     </section>
   );
+
 }
+export default Landing;
