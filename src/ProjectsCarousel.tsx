@@ -6,13 +6,7 @@ import projInstitutoMovimento from "./assets/LandingPageMovimentoWEBP.webp";
 import projFaleFacil from "./assets/FaleFacilWEBP.webp";
 
 const projects = [
-  {
-    title: "Software de Gerenciamento de Estoque",
-    category: "Software",
-    desc: "Sistema completo com controle de estoque, emissão de recibos e histórico de vendas.",
-    image: projEstetica,
-    imageAlt: "Interface do software de gerenciamento de estoque desenvolvido pela Koala Studio",
-  },
+ 
   {
     title: "Mara Lúcia Psicanálise",
     category: "Landing Page",
@@ -33,6 +27,13 @@ const projects = [
     desc: "Sistema completo de gestão de reclamações para empresas que querem organizar, acompanhar e resolver feedbacks de clientes com eficiência e transparência.",
     image: projFaleFacil,
     imageAlt: "Site e-commerce do Pet Shop Patinhas com sistema de agendamento",
+  },
+   {
+    title: "Software de Gerenciamento de Estoque",
+    category: "Software",
+    desc: "Sistema completo com controle de estoque, emissão de recibos e histórico de vendas.",
+    image: projEstetica,
+    imageAlt: "Interface do software de gerenciamento de estoque desenvolvido pela Koala Studio",
   },
 ];
 
