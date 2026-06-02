@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ykoalastudio.com.br/sitemap.xml
+Sitemap: https://www.ykoalastudio.com.br//sitemap.xml
