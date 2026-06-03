@@ -1,0 +1,325 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-eucalyptus: var(--eucalyptus);
+  --color-eucalyptus-soft: var(--eucalyptus-soft);
+  --color-cream: var(--cream);
+  --color-ink: var(--ink);
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  --shadow-soft: 0 10px 40px -10px oklch(0.2 0.02 150 / 0.15);
+  --shadow-card: 0 2px 0 0 var(--ink), 6px 8px 0 0 var(--ink);
+  --shadow-card-hover: 0 2px 0 0 var(--ink), 10px 14px 0 0 var(--ink);
+}
+
+:root {
+  --radius: 1rem;
+  --cream: oklch(0.985 0.012 95);
+  --ink: oklch(0.15 0.01 150);
+  --eucalyptus: oklch(0.52 0.1 160);
+  --eucalyptus-soft: oklch(0.88 0.05 160);
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--ink);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--cream);
+  --secondary: var(--eucalyptus-soft);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.95 0.012 95);
+  --muted-foreground: oklch(0.38 0.015 150);
+  --accent: var(--eucalyptus);
+  --accent-foreground: var(--cream);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0 0);
+  --border: oklch(0.15 0.01 150 / 0.12);
+  --input: oklch(0.15 0.01 150 / 0.15);
+  --ring: var(--eucalyptus);
+}
+
+.dark {
+  --background: oklch(0.15 0.01 150);
+  --foreground: var(--cream);
+  --card: oklch(0.2 0.01 150);
+  --card-foreground: var(--cream);
+  --primary: var(--cream);
+  --primary-foreground: var(--ink);
+  --border: oklch(1 0 0 / 0.12);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    background-image:
+      radial-gradient(circle at 10% 0%, oklch(0.88 0.05 160 / 0.28), transparent 40%),
+      radial-gradient(circle at 90% 100%, oklch(0.88 0.05 160 / 0.18), transparent 40%);
+    background-attachment: scroll;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer utilities {
+  .neo-card {
+    border: 2px solid var(--ink);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  :where(.neo-card) {
+    background: var(--card);
+  }
+
+  .neo-card:hover {
+    transform: translate(-3px, -4px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .neo-btn {
+    border: 2px solid var(--ink);
+    border-radius: 9999px;
+    box-shadow: 4px 4px 0 0 var(--ink);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    will-change: transform;
+  }
+
+  .neo-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 var(--ink);
+  }
+
+  .neo-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 0 0 0 0 var(--ink);
+  }
+
+  .grain::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+    background-size: 4px 4px;
+    z-index: 1;
+  }
+}
+
+/* =====================
+   FLOAT
+   ===================== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50%       { transform: translateY(-10px) rotate(2deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+  will-change: transform;
+  /* Garante que roda mesmo com prefers-reduced-motion no Windows */
+  animation-play-state: running;
+}
+
+/* =====================
+   MARQUEE
+   ===================== */
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+  animation-play-state: running;
+}
+
+/* =====================
+   MOBILE PERFORMANCE
+   ===================== */
+@media (max-width: 768px) {
+  /* Float continua ativo no mobile — o koala precisa se mexer! */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+    animation-play-state: running;
+  }
+
+  .animate-marquee {
+    animation-duration: 20s;
+  }
+
+  .neo-card:hover,
+  .neo-btn:hover {
+    transform: none;
+  }
+
+  .grain::before {
+    display: none;
+  }
+
+  body {
+    background-image:
+      radial-gradient(circle at top left, oklch(0.88 0.05 160 / 0.18), transparent 35%);
+  }
+}
+
+/* =====================
+   ACESSIBILIDADE — reduz mas NÃO mata animações essenciais de UI
+   (marquee e float são visuais, não afetam usabilidade — mantemos pausados)
+   ===================== */
+@media (prefers-reduced-motion: reduce) {
+  /* Para apenas transições de movimento — não animações CSS customizadas */
+  *:not(.animate-marquee):not(.animate-float),
+  *:not(.animate-marquee):not(.animate-float)::before,
+  *:not(.animate-marquee):not(.animate-float)::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Mantém o marquee funcionando mas deixa mais devagar */
+  .animate-marquee {
+    animation-duration: 60s !important;
+    animation-play-state: running !important;
+  }
+
+  /* Float do koala SEMPRE roda — visual essencial da marca */
+  .animate-float {
+    animation: float 6s ease-in-out infinite !important;
+    animation-play-state: running !important;
+  }
+}
+
+/* =====================
+   ACESSIBILIDADE EXTRA
+   ===================== */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: top 0.2s;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--eucalyptus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* =====================
+   FONT CLS MITIGATION
+   ===================== */
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Georgia");
+  size-adjust: 105%;
+  ascent-override: 90%;
+  descent-override: 20%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: local("system-ui");
+  size-adjust: 100%;
+  ascent-override: 92%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
+/* =====================
+   HERO VISUAL
+   ===================== */
+.hero-visual {
+  min-height: 320px;
+}
+@media (min-width: 768px) {
+  .hero-visual {
+    min-height: 420px;
+  }
+}
