@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
 import projEstetica from "@/assets/ImgElectromWEBP.webp";
 import projPsicanalise from "@/assets/IMGPsicanaliseWEBP800x388.webp";
 import projInstitutoMovimento from "./assets/LandingPageMovimentoWEBP.webp";
@@ -37,61 +36,30 @@ const projects = [
   },
 ];
 
-// 4 cards × ~1.25s por card = 5s para percorrer tudo
-const AUTOPLAY_DELAY = 1250;
-
 export default function ProjectsCarousel() {
-  const autoplay = useRef(
-    Autoplay({
-      delay: AUTOPLAY_DELAY,
-      stopOnInteraction: false,   // retoma sozinho após o usuário largar
-      stopOnMouseEnter: true,     // pausa quando mouse passa por cima (desktop)
-      playOnInit: true,
-    })
-  );
-
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    {
-      align: "start",
-      loop: true,
-      dragFree: false,
-      watchDrag: true,
-      duration: 18,               // transição rápida entre cards (~300ms)
-    },
-    [autoplay.current]
-  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    loop: false,
+    dragFree: false,
+    watchDrag: true,
+  });
 
   const scrollPrev = useCallback(() => {
     emblaApi?.scrollPrev();
-    // Reseta o timer do autoplay ao clicar manualmente
-    autoplay.current.reset();
   }, [emblaApi]);
 
   const scrollNext = useCallback(() => {
     emblaApi?.scrollNext();
-    autoplay.current.reset();
-  }, [emblaApi]);
-
-  // Pausa o autoplay enquanto o usuário está arrastando no touch
-  useEffect(() => {
-    if (!emblaApi) return;
-    const onPointerDown = () => autoplay.current.stop();
-    const onPointerUp   = () => autoplay.current.play();
-    emblaApi.on("pointerDown", onPointerDown);
-    emblaApi.on("pointerUp",   onPointerUp);
-    return () => {
-      emblaApi.off("pointerDown", onPointerDown);
-      emblaApi.off("pointerUp",   onPointerUp);
-    };
   }, [emblaApi]);
 
   return (
     <section
       id="projetos"
-      className="max-w-6xl mx-auto px-5 py-24 overflow-hidden"
+      className="max-w-6xl mx-auto py-24"
       aria-labelledby="projects-heading"
     >
-      <div className="flex flex-wrap items-end justify-between gap-6">
+      {/* Header com padding lateral */}
+      <div className="px-5 flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold text-eucalyptus uppercase tracking-wider">Portfólio</p>
           <h2 id="projects-heading" className="mt-3 text-4xl md:text-5xl font-bold">
@@ -122,17 +90,18 @@ export default function ProjectsCarousel() {
         </div>
       </div>
 
+      {/* Carrossel: padding-left pra alinhar com o header, overflow visível nas laterais */}
       <div
-        className="overflow-hidden mt-12"
+        className="overflow-hidden mt-12 pl-5"
         ref={emblaRef}
         aria-label="Carrossel de projetos"
         role="region"
       >
-        <div className="flex gap-6">
+        <div className="flex gap-5">
           {projects.map((p, index) => (
             <div
               key={p.title}
-              className="flex-none min-w-[85%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[38%]"
+              className="flex-none w-[82vw] sm:w-[55vw] md:w-[44%] lg:w-[36%] max-w-sm"
             >
               <article className="neo-card overflow-hidden bg-cream h-full">
                 <div className="h-56 border-b-2 border-ink overflow-hidden">
