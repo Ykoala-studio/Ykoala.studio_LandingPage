@@ -2,19 +2,12 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
-import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
     tsconfigPaths(),
-    ViteImageOptimizer({
-      webp: { quality: 75, lossless: false },
-      png:  { quality: 75 },
-      jpg:  { quality: 75 },
-      jpeg: { quality: 75 },
-    }),
   ],
   build: {
     minify: "terser",
@@ -30,7 +23,6 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // React core → chunk próprio (cacheável por muito tempo)
           if (
             id.includes("node_modules/react/") ||
             id.includes("node_modules/react-dom/") ||
@@ -38,8 +30,6 @@ export default defineConfig({
           ) {
             return "react-vendor";
           }
-          // embla fica junto com o app — sem chunk separado
-          // (evita problema de ordem de carregamento)
         },
         chunkFileNames: "assets/[name]-[hash].js",
         entryFileNames: "assets/[name]-[hash].js",
