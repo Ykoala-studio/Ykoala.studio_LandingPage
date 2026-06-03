@@ -1,10 +1,8 @@
-import { lazy, Suspense, useState } from "react";
+import { useState } from "react";
 import logo from "@/assets/LogoSemBackGroundWEBP.webp";
 import logoNav from "@/assets/LogoNav.webp";
 import logoYbranco from "@/assets/LogoYbrancoWEBP.webp";
-
-// ─── Carrossel carregado de forma lazy (embla-carousel só baixa quando visível)
-const ProjectsCarousel = lazy(() => import("./ProjectsCarousel"));
+import ProjectsCarousel from "./ProjectsCarousel";
 
 // ─── Dados estáticos ────────────────────────────────────────────────────────
 const services = [
@@ -193,7 +191,7 @@ export default function Landing() {
           <div className="flex items-center gap-3">
             <a
               href="#contato"
-              className="neo-btn bg-ink text-cream px-5 py-2 text-sm font-semibold"
+              className="hidden md:inline-flex neo-btn bg-ink text-cream px-5 py-2 text-sm font-semibold"
             >
               Fale com a gente
             </a>
@@ -383,22 +381,8 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* PROJETOS — lazy: só baixa embla-carousel quando entra na viewport */}
-        <Suspense
-          fallback={
-            <section
-              className="max-w-6xl mx-auto px-5 py-24"
-              aria-label="Carregando projetos"
-            >
-              <div
-                className="h-96 rounded-2xl bg-eucalyptus-soft/40 animate-pulse"
-                aria-hidden="true"
-              />
-            </section>
-          }
-        >
-          <ProjectsCarousel />
-        </Suspense>
+        {/* PROJETOS */}
+        <ProjectsCarousel />
 
         {/* PROCESSO */}
         <section

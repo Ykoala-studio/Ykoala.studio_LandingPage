@@ -47,54 +47,38 @@
 
 :root {
   --radius: 1rem;
-
   --cream: oklch(0.985 0.012 95);
   --ink: oklch(0.15 0.01 150);
   --eucalyptus: oklch(0.52 0.1 160);
   --eucalyptus-soft: oklch(0.88 0.05 160);
-
   --background: var(--cream);
   --foreground: var(--ink);
-
   --card: oklch(1 0 0);
   --card-foreground: var(--ink);
-
   --popover: oklch(1 0 0);
   --popover-foreground: var(--ink);
-
   --primary: var(--ink);
   --primary-foreground: var(--cream);
-
   --secondary: var(--eucalyptus-soft);
   --secondary-foreground: var(--ink);
-
   --muted: oklch(0.95 0.012 95);
-
-  /* contraste melhor */
   --muted-foreground: oklch(0.38 0.015 150);
-
   --accent: var(--eucalyptus);
   --accent-foreground: var(--cream);
-
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0 0);
-
   --border: oklch(0.15 0.01 150 / 0.12);
   --input: oklch(0.15 0.01 150 / 0.15);
-
   --ring: var(--eucalyptus);
 }
 
 .dark {
   --background: oklch(0.15 0.01 150);
   --foreground: var(--cream);
-
   --card: oklch(0.2 0.01 150);
   --card-foreground: var(--cream);
-
   --primary: var(--cream);
   --primary-foreground: var(--ink);
-
   --border: oklch(1 0 0 / 0.12);
 }
 
@@ -112,30 +96,16 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-
     background-image:
-      radial-gradient(
-        circle at 10% 0%,
-        oklch(0.88 0.05 160 / 0.28),
-        transparent 40%
-      ),
-      radial-gradient(
-        circle at 90% 100%,
-        oklch(0.88 0.05 160 / 0.18),
-        transparent 40%
-      );
-
+      radial-gradient(circle at 10% 0%, oklch(0.88 0.05 160 / 0.28), transparent 40%),
+      radial-gradient(circle at 90% 100%, oklch(0.88 0.05 160 / 0.18), transparent 40%);
     background-attachment: scroll;
-
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
-  h1,
-  h2,
-  h3,
-  h4 {
+  h1, h2, h3, h4 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
     line-height: 1;
@@ -152,13 +122,8 @@
   .neo-card {
     border: 2px solid var(--ink);
     border-radius: var(--radius-2xl);
-
     box-shadow: var(--shadow-card);
-
-    transition:
-      transform 0.2s ease,
-      box-shadow 0.2s ease;
-
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     will-change: transform;
     backface-visibility: hidden;
   }
@@ -175,13 +140,8 @@
   .neo-btn {
     border: 2px solid var(--ink);
     border-radius: 9999px;
-
     box-shadow: 4px 4px 0 0 var(--ink);
-
-    transition:
-      transform 0.15s ease,
-      box-shadow 0.15s ease;
-
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
     will-change: transform;
   }
 
@@ -195,67 +155,59 @@
     box-shadow: 0 0 0 0 var(--ink);
   }
 
-  /* grain otimizado */
   .grain::before {
     content: "";
-
     position: fixed;
     inset: 0;
-
     pointer-events: none;
-
     opacity: 0.025;
-
-    background-image:
-      radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
-
+    background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
     background-size: 4px 4px;
-
     z-index: 1;
   }
 }
 
-/* animação otimizada */
+/* =====================
+   FLOAT
+   ===================== */
 @keyframes float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) rotate(-2deg);
-  }
-
-  50% {
-    transform: translate3d(0, -10px, 0) rotate(2deg);
-  }
+  0%, 100% { transform: translateY(0px) rotate(-2deg); }
+  50%       { transform: translateY(-10px) rotate(2deg); }
 }
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
   will-change: transform;
+  /* Garante que roda mesmo com prefers-reduced-motion no Windows */
+  animation-play-state: running;
 }
 
-/* marquee otimizado */
+/* =====================
+   MARQUEE
+   ===================== */
 @keyframes marquee {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
 }
 
 .animate-marquee {
-  animation: marquee 40s linear infinite;
+  animation: marquee 30s linear infinite;
   will-change: transform;
+  animation-play-state: running;
 }
 
-/* MOBILE PERFORMANCE */
+/* =====================
+   MOBILE PERFORMANCE
+   ===================== */
 @media (max-width: 768px) {
+  /* Float continua ativo no mobile — o koala precisa se mexer! */
   .animate-float {
-    animation: none;
+    animation: float 6s ease-in-out infinite;
+    animation-play-state: running;
   }
 
   .animate-marquee {
-    animation-duration: 80s;
+    animation-duration: 20s;
   }
 
   .neo-card:hover,
@@ -269,29 +221,41 @@
 
   body {
     background-image:
-      radial-gradient(
-        circle at top left,
-        oklch(0.88 0.05 160 / 0.18),
-        transparent 35%
-      );
+      radial-gradient(circle at top left, oklch(0.88 0.05 160 / 0.18), transparent 35%);
   }
 }
 
-/* acessibilidade */
+/* =====================
+   ACESSIBILIDADE — reduz mas NÃO mata animações essenciais de UI
+   (marquee e float são visuais, não afetam usabilidade — mantemos pausados)
+   ===================== */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
+  /* Para apenas transições de movimento — não animações CSS customizadas */
+  *:not(.animate-marquee):not(.animate-float),
+  *:not(.animate-marquee):not(.animate-float)::before,
+  *:not(.animate-marquee):not(.animate-float)::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  /* Mantém o marquee funcionando mas deixa mais devagar */
+  .animate-marquee {
+    animation-duration: 60s !important;
+    animation-play-state: running !important;
+  }
+
+  /* Float do koala SEMPRE roda — visual essencial da marca */
+  .animate-float {
+    animation: float 6s ease-in-out infinite !important;
+    animation-play-state: running !important;
+  }
 }
+
 /* =====================
    ACESSIBILIDADE EXTRA
    ===================== */
-
-/* Skip-to-content link */
 .skip-link {
   position: absolute;
   top: -100%;
@@ -311,22 +275,18 @@
   top: 0;
 }
 
-/* Focus-visible: anel de foco visível para teclado */
 :focus-visible {
   outline: 3px solid var(--eucalyptus);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* Remove outline para cliques com mouse */
 :focus:not(:focus-visible) {
   outline: none;
 }
 
 /* =====================
    FONT CLS MITIGATION
-   Ajusta métricas dos fallbacks para minimizar layout shift
-   quando as Google Fonts carregam de forma não-bloqueante.
    ===================== */
 @font-face {
   font-family: "Fraunces";
@@ -353,7 +313,7 @@
 }
 
 /* =====================
-   HERO VISUAL — reserva espaço para evitar CLS do absolute rotacionado
+   HERO VISUAL
    ===================== */
 .hero-visual {
   min-height: 320px;
@@ -362,14 +322,4 @@
   .hero-visual {
     min-height: 420px;
   }
-}
-
-/* =====================
-   FLOAT — reescrita com apenas transform (GPU-only, sem reflow)
-   Substitui a versão anterior no arquivo (que usava translate3d + rotate)
-   A versão anterior causava "non-composited animation" no Lighthouse Desktop.
-   ===================== */
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(-2deg); }
-  50%       { transform: translateY(-10px) rotate(2deg); }
 }

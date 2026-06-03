@@ -1,12 +1,12 @@
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import projEstetica from "@/assets/ImgElectromWEBP.webp";
 import projPsicanalise from "@/assets/IMGPsicanaliseWEBP800x388.webp";
 import projInstitutoMovimento from "./assets/LandingPageMovimentoWEBP.webp";
 import projFaleFacil from "./assets/FaleFacilWEBP.webp";
 
 const projects = [
- 
   {
     title: "Mara Lúcia Psicanálise",
     category: "Landing Page",
@@ -17,18 +17,18 @@ const projects = [
   {
     title: "Instituto Movimento Landing Page",
     category: "Landing Page",
-    desc: "Crie uma presença online que realmente vende. Landing pages otimizadas para atrair alunos e pacientes para clínicas de fisioterapia, pilates e academias.",
+    desc: "Landing pages otimizadas para atrair alunos e pacientes para clínicas de fisioterapia, pilates e academias.",
     image: projInstitutoMovimento,
-    imageAlt: "Identidade visual e posts para Instagram do Café Aroma Verde",
+    imageAlt: "Landing page Instituto Movimento criada pela Koala Studio",
   },
   {
     title: "Software Fale Fácil",
     category: "Software",
-    desc: "Sistema completo de gestão de reclamações para empresas que querem organizar, acompanhar e resolver feedbacks de clientes com eficiência e transparência.",
+    desc: "Sistema completo de gestão de reclamações para empresas que querem organizar e resolver feedbacks com eficiência.",
     image: projFaleFacil,
-    imageAlt: "Site e-commerce do Pet Shop Patinhas com sistema de agendamento",
+    imageAlt: "Software Fale Fácil desenvolvido pela Koala Studio",
   },
-   {
+  {
     title: "Software de Gerenciamento de Estoque",
     category: "Software",
     desc: "Sistema completo com controle de estoque, emissão de recibos e histórico de vendas.",
@@ -37,15 +37,53 @@ const projects = [
   },
 ];
 
-export default function ProjectsCarousel() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "start",
-    loop: false,
-    dragFree: true,
-  });
+// 4 cards × ~1.25s por card = 5s para percorrer tudo
+const AUTOPLAY_DELAY = 1250;
 
-  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+export default function ProjectsCarousel() {
+  const autoplay = useRef(
+    Autoplay({
+      delay: AUTOPLAY_DELAY,
+      stopOnInteraction: false,   // retoma sozinho após o usuário largar
+      stopOnMouseEnter: true,     // pausa quando mouse passa por cima (desktop)
+      playOnInit: true,
+    })
+  );
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      align: "start",
+      loop: true,
+      dragFree: false,
+      watchDrag: true,
+      duration: 18,               // transição rápida entre cards (~300ms)
+    },
+    [autoplay.current]
+  );
+
+  const scrollPrev = useCallback(() => {
+    emblaApi?.scrollPrev();
+    // Reseta o timer do autoplay ao clicar manualmente
+    autoplay.current.reset();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    emblaApi?.scrollNext();
+    autoplay.current.reset();
+  }, [emblaApi]);
+
+  // Pausa o autoplay enquanto o usuário está arrastando no touch
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onPointerDown = () => autoplay.current.stop();
+    const onPointerUp   = () => autoplay.current.play();
+    emblaApi.on("pointerDown", onPointerDown);
+    emblaApi.on("pointerUp",   onPointerUp);
+    return () => {
+      emblaApi.off("pointerDown", onPointerDown);
+      emblaApi.off("pointerUp",   onPointerUp);
+    };
+  }, [emblaApi]);
 
   return (
     <section
@@ -94,7 +132,7 @@ export default function ProjectsCarousel() {
           {projects.map((p, index) => (
             <div
               key={p.title}
-              className="min-w-[85%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[38%]"
+              className="flex-none min-w-[85%] sm:min-w-[60%] md:min-w-[45%] lg:min-w-[38%]"
             >
               <article className="neo-card overflow-hidden bg-cream h-full">
                 <div className="h-56 border-b-2 border-ink overflow-hidden">
